@@ -1,6 +1,12 @@
 {
   "name": "freee-firebase-sdk",
   "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/freee/firebase-sdk-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freee/firebase-sdk-js.git"
+  },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "webpack --mode production",
