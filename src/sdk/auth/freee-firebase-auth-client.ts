@@ -97,11 +97,8 @@ export class FreeeFirebaseAuthClient {
         displayName,
         freeeToken
       )
-      if (this.apiKey) {
-        res.send(this.signInFirebaseTemplate(firebaseToken))
-      } else {
-        res.redirect(`${this.appHost}${this.homePath}?token=${firebaseToken}`)
-      }
+      // redirect to home path with token info
+      res.redirect(`${this.appHost}${this.homePath}?token=${firebaseToken}`)
     } catch (error) {
       console.error('Some error occured on login process:', error)
       res.status(401).send('Some error occured on login process')
@@ -174,26 +171,6 @@ export class FreeeFirebaseAuthClient {
       })
 
     return await this.admin.auth().createCustomToken(uid)
-  }
-
-  /**
-   * Build script to do sign-in in host
-   */
-  private signInFirebaseTemplate(firebaseToken: string): string {
-    return `
-      <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
-      <script>
-        var token = '${firebaseToken}';
-        var config = {
-          apiKey: '${this.apiKey}'
-        };
-        var app = firebase.initializeApp(config);
-        app.auth().signInWithCustomToken(token).then(function() {         
-          window.location.href = '${this.appHost}${
-      this.homePath
-    }?token=${firebaseToken}'
-        });
-      </script>`
   }
 
   /**
