@@ -45,8 +45,6 @@ firebase の基礎知識については、Google が提供する[firebase のド
 
 こちらの [チュートリアル | freee アプリストア](https://app.secure.freee.co.jp/developers/tutorials/2-%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B) を参考に、アプリケーションを登録して下さい。
 
-本 SDK と接続するには、コールバック URL に、`https://localhost:5001/signin-freee` を設定します。
-
 ### サンプルアプリ
 
 #### WebApp のサンプル
