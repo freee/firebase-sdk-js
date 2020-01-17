@@ -1,10 +1,10 @@
-# freee 会計 API SDK for firebase in Javascript （β版）
+# 会計freee Firebase SDK
 
-freee アプリストアのアプリを firebase 上で開発するための SDK です。
+freee アプリストアのアプリを Firebase 上で開発するための SDK です。
 
 ## できること
 
-- freee ログイン -> 認可 -> リダイレクト -> firebase にアカウント情報保存 -> firebase ログインの一連の処理
+- freee ログイン -> 認可 -> リダイレクト -> Firebase にアカウント情報保存 -> Firebase ログインの一連の処理
 - freee の API をトークンを意識せず呼び出すことが可能
 - freee アクセストークン・リフレッシュトークンの暗号化・復号処理
 
@@ -30,13 +30,13 @@ freee アプリストアのアプリを firebase 上で開発するための SDK
 本 SDK を利用する前に下記をご確認ください。
 
 - freee 本体のアカウントを持っていること
-- firebase のアカウントを持っていること
+- Firebase のアカウントを持っていること
 
 freee 本体のアカウントは、後述する [freee アプリストアへのアプリケーション登録](#freee-アプリストアへのアプリケーション登録) で必要になります。
 
 freee API に関しては、[チュートリアルガイド](https://app.secure.freee.co.jp/developers/tutorials/1-freee%20API%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B#freee%20API%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B) をご参照ください。
 
-firebase の基礎知識については、Google が提供する[firebase のドキュメント](https://firebase.google.com/docs) をご参照ください。
+Firebase の基礎知識については、Google が提供する[Firebase のドキュメント](https://firebase.google.com/docs) をご参照ください。
 
 ### freee アプリストアへのアプリケーション登録
 
