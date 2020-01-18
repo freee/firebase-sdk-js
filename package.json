@@ -1,6 +1,6 @@
 {
   "name": "freee-firebase-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "homepage": "https://github.com/freee/firebase-sdk-js",
   "repository": {
@@ -34,7 +34,7 @@
     "@types/express": "^4.16.1",
     "@types/jest": "^24.0.11",
     "@types/simple-oauth2": "^2.2.1",
-    "copy-webpack-plugin": "^5.0.3",
+    "copy-webpack-plugin": "^5.1.1",
     "jest": "^24.7.1",
     "prettier": "1.17.0",
     "ts-jest": "^24.0.2",
