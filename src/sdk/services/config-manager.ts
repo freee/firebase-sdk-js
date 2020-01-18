@@ -54,7 +54,7 @@ const DEFAULT_CONFIGS: DefaltConfigs = {
   freee: [
     {
       key: ConfigKeys.apiHost,
-      default: 'http://localhost:3000',
+      default: 'https://api.freee.co.jp',
       production: 'https://api.freee.co.jp'
     },
     {
@@ -85,7 +85,7 @@ const DEFAULT_CONFIGS: DefaltConfigs = {
     },
     {
       key: ConfigKeys.tokenHost,
-      default: 'http://localhost:3004',
+      default: 'https://accounts.secure.freee.co.jp',
       production: 'https://accounts.secure.freee.co.jp'
     },
     {

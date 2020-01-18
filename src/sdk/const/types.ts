@@ -61,7 +61,7 @@ export interface SDKFreeeConfig extends SDKBaseConfig {
   /**
    * freee API server host url
    *
-   * @defaultValue "http://localhost:3000"
+   * @defaultValue "https://api.freee.co.jp"
    * @defaultValue 'https://api.freee.co.jp' when functions.config().env.mode === 'production'
    */
   apiHost?: string
@@ -69,7 +69,7 @@ export interface SDKFreeeConfig extends SDKBaseConfig {
   /**
    * freee token server host url
    *
-   * @defaultValue "http://localhost:3004"
+   * @defaultValue "https://accounts.secure.freee.co.jp"
    * @defaultValue "https://accounts.secure.freee.co.jp" when functions.config().env.mode === 'production'
    */
   tokenHost?: string
