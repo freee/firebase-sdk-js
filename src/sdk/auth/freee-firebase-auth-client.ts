@@ -134,7 +134,7 @@ export class FreeeFirebaseAuthClient {
   }
 
   private getFreeeUser(accessToken: string) {
-    return this.axios.get('/api/1/users/me?companies=true', {
+    return this.axios.get('/api/v1/users/me?companies=true', {
       headers: { Authorization: `Bearer ${accessToken}` }
     })
   }
