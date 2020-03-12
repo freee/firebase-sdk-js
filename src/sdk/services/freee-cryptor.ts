@@ -29,7 +29,7 @@ class FreeeCryptor {
    * Create crypto key to bucket for it by specified date
    */
   async createCryptoKey(date: Date): Promise<void> {
-    const keyFileName = format(date, 'YYYYMM')
+    const keyFileName = format(date, 'yyyyMM')
     return this.create(keyFileName)
   }
 
@@ -44,7 +44,7 @@ class FreeeCryptor {
    */
   async encrypt(token: FreeeToken): Promise<FreeeTokenWithCryptInfo> {
     const { accessToken, refreshToken } = token
-    const keyFileName = format(new Date(), 'YYYYMM')
+    const keyFileName = format(new Date(), 'yyyyMM')
     const key = await this.getKey(keyFileName)
     const iv = crypto.randomBytes(IV_LENGTH)
 
