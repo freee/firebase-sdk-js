@@ -18,7 +18,8 @@ export class FreeeFirebaseAuthClient {
   private homePath: string
   private appHost: string
   private authHost: string
-  // private apiKey?: string
+  // @ts-ignore  FIXME: tslint でエラーになる。不要なら削除する
+  private apiKey?: string
 
   constructor(
     admin: admin.app.App,
@@ -45,7 +46,7 @@ export class FreeeFirebaseAuthClient {
     this.homePath = ConfigManager.get(freeeConfigs, ConfigKeys.homePath)
     this.appHost = ConfigManager.get(freeeConfigs, ConfigKeys.appHost)
     this.authHost = ConfigManager.get(freeeConfigs, ConfigKeys.authHost)
-    // this.apiKey = config.firebase && config.firebase.apiKey!
+    this.apiKey = config.firebase && config.firebase.apiKey!
   }
 
   /**
