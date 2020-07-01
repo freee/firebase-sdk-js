@@ -50,6 +50,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   }
 }
