@@ -18,6 +18,7 @@ export class FreeeFirebaseAuthClient {
   private homePath: string
   private appHost: string
   private authHost: string
+  // @ts-ignore  FIXME: tslint でエラーになる。不要なら削除する
   private apiKey?: string
 
   constructor(

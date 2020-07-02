@@ -20,9 +20,13 @@ export class FreeeAPIClient {
     userId: string
   ): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+        'X-Api-Version': '2020-06-15'
+      }
       return this.axios.get(url, {
         params: params,
-        headers: { Authorization: `Bearer ${accessToken}` }
+        headers: headers
       })
     })
   }
@@ -32,8 +36,12 @@ export class FreeeAPIClient {
    */
   post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+        'X-Api-Version': '2020-06-15'
+      }
       return this.axios.post(url, data, {
-        headers: { Authorization: `Bearer ${accessToken}` }
+        headers: headers
       })
     })
   }
@@ -43,8 +51,12 @@ export class FreeeAPIClient {
    */
   put<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+        'X-Api-Version': '2020-06-15'
+      }
       return this.axios.put(url, data, {
-        headers: { Authorization: `Bearer ${accessToken}` }
+        headers: headers
       })
     })
   }
@@ -54,9 +66,13 @@ export class FreeeAPIClient {
    */
   delete(url: string, data: ParamJSON, userId: string): AxiosPromise {
     return this.tokenManager.get(userId).then(accessToken => {
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+        'X-Api-Version': '2020-06-15'
+      }
       return this.axios.delete(url, {
         data: data,
-        headers: { Authorization: `Bearer ${accessToken}` }
+        headers: headers
       })
     })
   }
