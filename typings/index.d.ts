@@ -30,11 +30,12 @@ declare module 'freee-firebase-sdk' {
     get<T = any>(
       url: string,
       params: ParamJSON,
-      userId: string
+      userId: string,
+      contentType?: string
     ): AxiosPromise<T>
-    post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
-    put<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
-    delete(url: string, data: ParamJSON, userId: string): AxiosPromise
+    post<T = any>(url: string, data: ParamJSON, userId: string, contentType?: string): AxiosPromise<T>
+    put<T = any>(url: string, data: ParamJSON, userId: string, contentType?: string): AxiosPromise<T>
+    delete(url: string, data: ParamJSON, userId: string, contentType?: string): AxiosPromise
   }
 
   class FreeeFirebaseAuthClient {
