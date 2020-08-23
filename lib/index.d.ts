@@ -32,7 +32,7 @@ declare module 'freee-firebase-sdk' {
       params: ParamJSON,
       userId: string
     ): AxiosPromise<T>
-    post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
+    post<T = any>(url: string, data: ParamJSON|FormData, userId: string): AxiosPromise<T>
     put<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
     delete(url: string, data: ParamJSON, userId: string): AxiosPromise
   }
