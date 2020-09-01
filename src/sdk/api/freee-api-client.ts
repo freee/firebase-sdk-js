@@ -41,7 +41,7 @@ export class FreeeAPIClient {
 
       let sendData = data
       let sendHeaders: { [key: string]: any }  = {}
-      let sendCcontentType = 'application/json'
+      let sendContentType = 'application/json'
 
       const isMultipartRequest = url === 'api/1/receipts'
       if (isMultipartRequest) {
@@ -51,12 +51,12 @@ export class FreeeAPIClient {
         })
         sendData = formData
         sendHeaders = formData.getHeaders()
-        sendCcontentType = 'multipart/form-data'
+        sendContentType = 'multipart/form-data'
       }
 
       sendHeaders['Authorization'] = `Bearer ${accessToken}`
       sendHeaders['X-Api-Version'] = '2020-06-15'
-      sendHeaders['Content-Type'] = sendCcontentType
+      sendHeaders['Content-Type'] = sendContentType
 
       return this.axios.post(url, sendData, {
         headers: sendHeaders
