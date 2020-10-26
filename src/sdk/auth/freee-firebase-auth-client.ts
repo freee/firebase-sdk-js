@@ -71,9 +71,6 @@ export class FreeeFirebaseAuthClient {
           code: code,
           redirect_uri: `${this.authHost}${this.getCallbackPath()}`
         })
-        .catch(() => {
-          res.send(this.signInRefusedTemplate())
-        })
 
       const freeeToken = {
         accessToken: result.access_token,
@@ -102,7 +99,7 @@ export class FreeeFirebaseAuthClient {
       res.redirect(`${this.appHost}${this.homePath}?token=${firebaseToken}`)
     } catch (error) {
       console.error('Some error occured on login process:', error)
-      res.status(401).send('Some error occured on login process')
+      res.send(this.signInRefusedTemplate())
     }
   }
 
