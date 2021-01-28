@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "watch": "webpack --watch --mode development",
     "serve": "firebase serve --only functions -o 0.0.0.0",
     "shell": "npm run build && firebase functions:shell",

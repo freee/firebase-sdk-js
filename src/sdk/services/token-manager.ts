@@ -21,7 +21,15 @@ export class TokenManager {
    * Get token with handling refresh token
    */
   async get(userId: string): Promise<string> {
-    const freeeToken = await this.getTokenFromFirebase(userId)
+    let freeeToken: any;
+
+    try {
+      console.log(`TokenManager_get_start:`, {userId: userId})
+      freeeToken = await this.getTokenFromFirebase(userId)
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
 
     if (this.tokenExpired(freeeToken)) {
       console.log(`accessToken has been expired for user:`, userId)
@@ -116,8 +124,10 @@ export class TokenManager {
 
   private async getTokenFromFirebase(userId: string, fromFirestore?: boolean) {
     if (!fromFirestore) {
+      console.log(`TokenManager_getTokenFromFirebase_fromFirestore:`, {fromFirestore: fromFirestore})
       const cachedToken = this.tokenCache[userId]
       if (cachedToken) {
+        console.log(`TokenManager_getTokenFromFirebase_cachedToken:`, {cachedToken: cachedToken})
         return await this.decrypt(cachedToken)
       }
     }
@@ -128,6 +138,7 @@ export class TokenManager {
       .get()
     const token = snap.data() as FreeeTokenWithCryptInfo
     this.tokenCache[userId] = token
+    console.log(`TokenManager_getTokenFromFirebase_firestore:`, {firestore: token})
 
     console.log('Token is retrieved from firestore for user:', userId)
 
