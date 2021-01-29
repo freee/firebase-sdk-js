@@ -48,6 +48,13 @@ class FreeeCryptor {
     const key = await this.getKey(keyFileName)
     const iv = crypto.randomBytes(IV_LENGTH)
 
+    console.log(`FreeeCryptor_encrypt_info:`, {
+      token: token,
+      keyFileName: keyFileName,
+      key: key,
+      iv: iv
+    })
+
     return {
       ...token,
       accessToken: this.crypt(accessToken, this.cipher(key, iv), IN, OUT),
