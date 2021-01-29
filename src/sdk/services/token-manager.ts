@@ -126,7 +126,7 @@ export class TokenManager {
       console.log(`TokenManager_getTokenFromFirebase_fromFirestore:`, {fromFirestore: fromFirestore})
       const cachedToken = this.tokenCache[userId]
       if (cachedToken) {
-        console.log(`TokenManager_getTokenFromFirebase_cachedToken:`, {cachedToken: cachedToken})
+        console.log("TokenManager_getTokenFromFirebase_cachedToken")
         return await this.decrypt(cachedToken)
       }
     }
@@ -137,7 +137,6 @@ export class TokenManager {
       .get()
     const token = snap.data() as FreeeTokenWithCryptInfo
     this.tokenCache[userId] = token
-    console.log(`TokenManager_getTokenFromFirebase_firestore:`, {firestore: token})
 
     console.log('Token is retrieved from firestore for user:', userId)
 
