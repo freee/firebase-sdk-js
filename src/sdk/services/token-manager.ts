@@ -27,7 +27,6 @@ export class TokenManager {
       console.log(`TokenManager_get_start:`, {userId: userId})
       freeeToken = await this.getTokenFromFirebase(userId)
     } catch (error) {
-      console.log(error)
       throw error
     }
 
