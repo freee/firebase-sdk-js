@@ -48,12 +48,7 @@ class FreeeCryptor {
     const key = await this.getKey(keyFileName)
     const iv = crypto.randomBytes(IV_LENGTH)
 
-    console.log(`FreeeCryptor_encrypt_info:`, {
-      token: token,
-      keyFileName: keyFileName,
-      key: key,
-      iv: iv
-    })
+    console.log("FreeeCryptor_encrypt_info")
 
     return {
       ...token,
@@ -82,7 +77,7 @@ class FreeeCryptor {
   ): Promise<FreeeTokenWithCryptInfo> {
     const { accessToken, refreshToken, keyFileName, algorithm, iv } = token
     const key = await this.getKey(keyFileName)
-    console.log(`FreeeCryptor_decrypt_getKey:`, {decryptKey: key})
+    console.log("FreeeCryptor_decrypt_getKey")
 
     return {
       ...token,
@@ -130,9 +125,9 @@ class FreeeCryptor {
     outputEncoding: any
   ) {
     let result: any = algorithm.update(targetStr, inputEncoding, outputEncoding)
-    console.log(`FreeeCryptor_crypt_update:`, {updateResult: result})
+    console.log("FreeeCryptor_crypt_update")
     result += algorithm.final(outputEncoding)
-    console.log(`FreeeCryptor_crypt_final:`, {cryptFinalResult: result})
+    console.log("FreeeCryptor_crypt_final")
     return result
   }
 
