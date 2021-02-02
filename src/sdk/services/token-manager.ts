@@ -148,6 +148,12 @@ export class TokenManager {
   }
 
   private async decrypt(freeeToken: FreeeTokenWithCryptInfo) {
-    return this.cryptor ? await this.cryptor.decrypt(freeeToken) : freeeToken
+    if (this.cryptor) {
+      console.log("TokenManager_decrypt_have_cryptor")
+      return await this.cryptor.decrypt(freeeToken)
+    } else {
+      console.log("TokenManager_decrypt_return_freeeToken")
+      return freeeToken
+    }
   }
 }
