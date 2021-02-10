@@ -42,6 +42,7 @@ export class FreeeAPIClient {
       let sendData = data
       let sendHeaders: { [key: string]: any }  = {}
       let sendContentType = 'application/json'
+      const maxContentLength = 104857600
 
       const isMultipartRequest = url === 'api/1/receipts'
       if (isMultipartRequest) {
@@ -59,6 +60,7 @@ export class FreeeAPIClient {
       sendHeaders['Content-Type'] = sendContentType
 
       return this.axios.post(url, sendData, {
+        maxContentLength: maxContentLength,
         headers: sendHeaders
       })
     })
