@@ -15,6 +15,7 @@ const mockGetWhenNotCreated = jest
   .mockRejectedValue(new Error('Must not be called'))
 
 let isCreated = true
+let isExists = false
 
 jest.mock('firebase-admin', () => {
   return {
@@ -23,6 +24,7 @@ jest.mock('firebase-admin', () => {
         file: (path: string) => ({
           download: async () =>
             isCreated ? mockGetWhenCreated() : mockGetWhenNotCreated(),
+          exists: async () => [isExists],
           save: () => (isCreated = true)
         })
       })
