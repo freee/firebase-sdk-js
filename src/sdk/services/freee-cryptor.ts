@@ -112,9 +112,8 @@ class FreeeCryptor {
       if (!(await this.exists(keyFileName))) {
         console.info('No key file for:', keyFileName)
         await this.create(keyFileName)
-        return await this.get(keyFileName)
       }
-      throw error
+      return await this.get(keyFileName)
     }
   }
 
