@@ -109,8 +109,10 @@ class FreeeCryptor {
     try {
       return await this.get(keyFileName)
     } catch (error) {
-      console.info('No key file for:', keyFileName)
-      await this.create(keyFileName)
+      if (!(await this.exists(keyFileName))) {
+        console.info('No key file for:', keyFileName)
+        await this.create(keyFileName)
+      }
       return await this.get(keyFileName)
     }
   }
@@ -138,6 +140,16 @@ class FreeeCryptor {
     this.keyCache[keyFileName] = response[0]
     console.log('Crypto key is retrieved from storage for:', keyFileName)
     return response[0]
+  }
+
+  private async exists(keyFileName: string) {
+    const response = await this.bucket.file(keyFileName).exists()
+    const isExists = response[0]
+    console.log(
+      `Crypto key ${isExists ? 'is' : 'is not'} exists storage for:`,
+      keyFileName
+    )
+    return isExists
   }
 }
 
