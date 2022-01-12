@@ -23,15 +23,15 @@
   "types": "lib/index.d.js",
   "dependencies": {
     "@google-cloud/storage": "^4.6.0",
-    "axios": "^0.19.0",
+    "axios": "^0.24.0",
     "body-parser": "^1.18.3",
     "crypto": "^1.0.1",
     "date-fns": "^2.11.0",
     "express": "^4.16.4",
     "firebase-admin": "^8.2.0",
     "firebase-functions": "^3.1.0",
-    "simple-oauth2": "^2.2.1",
-    "form-data": "^3.0.0"
+    "form-data": "^3.0.0",
+    "simple-oauth2": "^2.2.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
