@@ -10,8 +10,8 @@ const mockSave = jest.fn()
 jest.mock('firebase-admin', () => {
   return {
     storage: () => ({
-      bucket: (path: string) => ({
-        file: (path: string) => ({
+      bucket: (bucketPath: string) => ({
+        file: (filePath: string) => ({
           download: async () => mockDownload(),
           exists: async () => mockExists(),
           save: async () => mockSave()
@@ -29,14 +29,11 @@ describe('FreeeCryptor', () => {
   describe('getKey', () => {
     beforeEach(async () => {
       mockDownload.mockReset()
-      mockDownload
-        .mockRejectedValue(new Error('Must not be called'))
+      mockDownload.mockRejectedValue(new Error('Must not be called'))
       mockExists.mockReset()
-      mockExists
-        .mockRejectedValue(new Error('Must not be called'))
+      mockExists.mockRejectedValue(new Error('Must not be called'))
       mockSave.mockReset()
-      mockSave
-        .mockRejectedValue(new Error('Must not be called'))
+      mockSave.mockRejectedValue(new Error('Must not be called'))
     })
 
     it('when crypto key is already created', async () => {
@@ -83,7 +80,9 @@ describe('FreeeCryptor', () => {
         .mockRejectedValue(new Error('Must not be called'))
 
       const cryptor = new FreeeCryptor(bucket)
-      await expect(cryptor['getKey'](keyFileName)).rejects.toThrow('Unknown exists error')
+      await expect(cryptor['getKey'](keyFileName)).rejects.toThrow(
+        'Unknown exists error'
+      )
     })
 
     it('error getting crypto key only once', async () => {

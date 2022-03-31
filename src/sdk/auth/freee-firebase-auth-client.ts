@@ -1,12 +1,12 @@
 import { AxiosStatic } from 'axios'
-import * as admin from 'firebase-admin'
+import * as firebaseAdmin from 'firebase-admin'
 import { Response } from 'firebase-functions'
 import { FreeeToken, SDKConfig } from '../const/types'
 import { ConfigKeys, ConfigManager } from '../services/config-manager'
 import { TokenManager } from '../services/token-manager'
 
 export class FreeeFirebaseAuthClient {
-  private admin: admin.app.App
+  private admin: firebaseAdmin.app.App
   private oauth2: any // Can not use typescript version due to mismatch with freee oauth
   private axios: AxiosStatic
   private tokenManager: TokenManager
@@ -22,7 +22,7 @@ export class FreeeFirebaseAuthClient {
   private apiKey?: string
 
   constructor(
-    admin: admin.app.App,
+    admin: firebaseAdmin.app.App,
     oauth2: any,
     axios: AxiosStatic,
     tokenManager: TokenManager,
@@ -64,13 +64,12 @@ export class FreeeFirebaseAuthClient {
    */
   async callback(code: string, res: Response): Promise<void> {
     try {
-      const result = await this.oauth2.authorizationCode
-        .getToken({
-          client_id: this.clientId,
-          client_secret: this.clientSecret,
-          code: code,
-          redirect_uri: `${this.authHost}${this.getCallbackPath()}`
-        })
+      const result = await this.oauth2.authorizationCode.getToken({
+        client_id: this.clientId,
+        client_secret: this.clientSecret,
+        code: code,
+        redirect_uri: `${this.authHost}${this.getCallbackPath()}`
+      })
 
       const freeeToken = {
         accessToken: result.access_token,
