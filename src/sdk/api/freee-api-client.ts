@@ -1,7 +1,7 @@
 import { AxiosPromise, AxiosStatic } from 'axios'
 import { ParamJSON } from '../const/types'
 import { TokenManager } from '../services/token-manager'
-import * as FormData from 'form-data';
+import * as FormData from 'form-data'
 
 export class FreeeAPIClient {
   private tokenManager: TokenManager
@@ -38,9 +38,8 @@ export class FreeeAPIClient {
    */
   post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
-
       let sendData = data
-      let sendHeaders: { [key: string]: any }  = {}
+      let sendHeaders: { [key: string]: any } = {}
       let sendContentType = 'application/json'
       const maxContentLength = 104857600
 

@@ -5,8 +5,8 @@ process.env.FIREBASE_CONFIG = JSON.stringify({
   projectId: PROJECT_ID
 })
 
-let mockGetMode = jest.fn().mockReturnValue(MODE)
-let mockGetRegion = jest.fn().mockReturnValue(REGION_US)
+const mockGetMode = jest.fn().mockReturnValue(MODE)
+const mockGetRegion = jest.fn().mockReturnValue(REGION_US)
 
 jest.mock('firebase-functions', () => {
   return {

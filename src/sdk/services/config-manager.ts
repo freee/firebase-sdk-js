@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions'
-import { SUPPORTED_REGIONS } from 'firebase-functions'
 import { SDKBaseConfig } from '../const/types'
 
+const SUPPORTED_REGIONS = functions.SUPPORTED_REGIONS
 const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG!)
 const projectId = adminConfig.projectId
 const region =
@@ -108,7 +108,7 @@ const DEFAULT_CONFIGS: DefaltConfigs = {
 export class ConfigManager {
   static get(configs: SDKBaseConfig | null, key: ConfigKeys) {
     if (configs && this.hasKey(configs, key)) {
-      return configs[key]!
+      return configs[key]
     }
 
     return this.getDefaultValue(key)
@@ -122,7 +122,7 @@ export class ConfigManager {
     const defaultConfigs = ([] as DefaultConfig[])
       .concat(DEFAULT_CONFIGS.freee)
       .concat(DEFAULT_CONFIGS.firebase)
-    const config = defaultConfigs.find(config => config.key === key)!
+    const config = defaultConfigs.find(defaultConfig => defaultConfig.key === key)!
     return this.isProduction() && config.production
       ? config.production
       : config.default
