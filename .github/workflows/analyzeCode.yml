@@ -22,4 +22,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run lint
-    - run: npm run fmt
+    - run: npx prettier --check 'src/**/*.{tsx,ts}'
