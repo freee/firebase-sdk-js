@@ -1,16 +1,16 @@
-import * as admin from 'firebase-admin'
+import * as firebaseAdmin from 'firebase-admin'
 import { FreeeToken } from '../const/types'
 import FreeeCryptor, { FreeeTokenWithCryptInfo } from './freee-cryptor'
 
 const MARGIN_OF_EXPIRES_SECONDS = 300
 
 export class TokenManager {
-  private admin: admin.app.App
+  private admin: firebaseAdmin.app.App
   private oauth2: any // Can not use typescript version due to mismatch with freee oauth
   private cryptor: FreeeCryptor | null
   private tokenCache: { [key: string]: FreeeTokenWithCryptInfo }
 
-  constructor(admin: admin.app.App, oauth2: any, cryptor: FreeeCryptor | null) {
+  constructor(admin: firebaseAdmin.app.App, oauth2: any, cryptor: FreeeCryptor | null) {
     this.admin = admin
     this.oauth2 = oauth2
     this.cryptor = cryptor
