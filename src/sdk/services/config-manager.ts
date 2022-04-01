@@ -122,7 +122,9 @@ export class ConfigManager {
     const defaultConfigs = ([] as DefaultConfig[])
       .concat(DEFAULT_CONFIGS.freee)
       .concat(DEFAULT_CONFIGS.firebase)
-    const config = defaultConfigs.find(defaultConfig => defaultConfig.key === key)!
+    const config = defaultConfigs.find(
+      defaultConfig => defaultConfig.key === key
+    )!
     return this.isProduction() && config.production
       ? config.production
       : config.default

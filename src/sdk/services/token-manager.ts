@@ -10,7 +10,11 @@ export class TokenManager {
   private cryptor: FreeeCryptor | null
   private tokenCache: { [key: string]: FreeeTokenWithCryptInfo }
 
-  constructor(admin: firebaseAdmin.app.App, oauth2: any, cryptor: FreeeCryptor | null) {
+  constructor(
+    admin: firebaseAdmin.app.App,
+    oauth2: any,
+    cryptor: FreeeCryptor | null
+  ) {
     this.admin = admin
     this.oauth2 = oauth2
     this.cryptor = cryptor
