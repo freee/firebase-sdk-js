@@ -14,6 +14,7 @@ module.exports = {
   },
   target: 'node',
   devtool: 'cheap-module-source-map',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -28,6 +29,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
+  externalsPresets: { node: true },
   externals: [nodeExternals()],
   plugins: [
     new CopyPlugin({
