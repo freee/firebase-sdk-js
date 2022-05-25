@@ -29,5 +29,11 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.json']
   },
   externals: [nodeExternals()],
-  plugins: [new CopyPlugin([{ from: 'typings', to: './' }])]
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'typings', to: './' },
+      ],
+    }),
+  ],
 }
