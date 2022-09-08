@@ -4,6 +4,7 @@
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "useUnknownInCatchVariables": false,
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
