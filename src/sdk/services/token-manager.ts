@@ -32,7 +32,7 @@ export class TokenManager {
 
       try {
         return await this.refreshToken(freeeToken, userId)
-      } catch (error) {
+      } catch (error: any) {
         if (error.output && error.output.statusCode === 401) {
           console.log('Token is already refreshed in other instance:', error)
 
