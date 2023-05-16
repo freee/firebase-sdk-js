@@ -2,6 +2,10 @@ export interface ParamJSON {
   [key: string]: any
 }
 
+export interface CustomHeaders {
+  [key: string]: any
+}
+
 export interface FreeeToken {
   accessToken: string
   refreshToken: string

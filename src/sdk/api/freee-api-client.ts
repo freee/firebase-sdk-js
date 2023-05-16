@@ -1,5 +1,5 @@
 import { AxiosPromise, AxiosStatic } from 'axios'
-import { ParamJSON } from '../const/types'
+import { ParamJSON, CustomHeaders } from '../const/types'
 import { TokenManager } from '../services/token-manager'
 import * as FormData from 'form-data'
 
@@ -18,14 +18,17 @@ export class FreeeAPIClient {
   get<T = any>(
     url: string,
     params: ParamJSON,
-    userId: string
+    userId: string,
+    customHeaders?: CustomHeaders
   ): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
       const headers = {
         Authorization: `Bearer ${accessToken}`,
         'X-Api-Version': '2020-06-15',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...customHeaders
       }
+
       return this.axios.get(url, {
         params: params,
         headers: headers
@@ -36,7 +39,12 @@ export class FreeeAPIClient {
   /**
    * Call freee api by POST
    */
-  post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
+  post<T = any>(
+    url: string,
+    data: ParamJSON,
+    userId: string,
+    customHeaders?: CustomHeaders
+  ): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
       let sendData = data
       let sendHeaders: { [key: string]: any } = {}
@@ -58,9 +66,14 @@ export class FreeeAPIClient {
       sendHeaders['X-Api-Version'] = '2020-06-15'
       sendHeaders['Content-Type'] = sendContentType
 
+      const headers = {
+        ...sendHeaders,
+        ...customHeaders
+      }
+
       return this.axios.post(url, sendData, {
         maxContentLength: maxContentLength,
-        headers: sendHeaders
+        headers: headers
       })
     })
   }
@@ -68,12 +81,18 @@ export class FreeeAPIClient {
   /**
    * Call freee api by PUT
    */
-  put<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
+  put<T = any>(
+    url: string,
+    data: ParamJSON,
+    userId: string,
+    customHeaders?: CustomHeaders
+  ): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
       const headers = {
         Authorization: `Bearer ${accessToken}`,
         'X-Api-Version': '2020-06-15',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...customHeaders
       }
       return this.axios.put(url, data, {
         headers: headers
@@ -84,12 +103,18 @@ export class FreeeAPIClient {
   /**
    * Call freee api by GET
    */
-  delete(url: string, data: ParamJSON, userId: string): AxiosPromise {
+  delete(
+    url: string,
+    data: ParamJSON,
+    userId: string,
+    customHeaders?: CustomHeaders
+  ): AxiosPromise {
     return this.tokenManager.get(userId).then(accessToken => {
       const headers = {
         Authorization: `Bearer ${accessToken}`,
         'X-Api-Version': '2020-06-15',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...customHeaders
       }
       return this.axios.delete(url, {
         data: data,
