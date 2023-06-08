@@ -1,7 +1,7 @@
-import { AxiosPromise } from 'axios';
-import * as express from 'express';
-import * as admin from 'firebase-admin';
-import { ParamJSON, SDKConfig } from '../src/sdk/const/types';
+import { AxiosPromise } from 'axios'
+import * as express from 'express'
+import * as admin from 'firebase-admin'
+import { CustomHeaders, ParamJSON, SDKConfig } from '../src/sdk/const/types'
 
 declare module 'freee-firebase-sdk' {
   /**
@@ -30,11 +30,27 @@ declare module 'freee-firebase-sdk' {
     get<T = any>(
       url: string,
       params: ParamJSON,
-      userId: string
+      userId: string,
+      customHeaders?: CustomHeaders
     ): AxiosPromise<T>
-    post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
-    put<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T>
-    delete(url: string, data: ParamJSON, userId: string): AxiosPromise
+    post<T = any>(
+      url: string,
+      data: ParamJSON,
+      userId: string,
+      customHeaders?: CustomHeaders
+    ): AxiosPromise<T>
+    put<T = any>(
+      url: string,
+      data: ParamJSON,
+      userId: string,
+      customHeaders?: CustomHeaders
+    ): AxiosPromise<T>
+    delete(
+      url: string,
+      data: ParamJSON,
+      userId: string,
+      customHeaders?: CustomHeaders
+    ): AxiosPromise
   }
 
   class FreeeFirebaseAuthClient {
