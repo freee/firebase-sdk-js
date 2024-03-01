@@ -1,13 +1,27 @@
 import * as functions from 'firebase-functions'
 import { SDKBaseConfig } from '../const/types'
+import { error as loggerError } from 'firebase-functions/logger'
+import { config as loadEnv } from 'dotenv'
+
+loadEnv()
 
 const SUPPORTED_REGIONS = functions.SUPPORTED_REGIONS
 const adminConfig = JSON.parse(process.env.FIREBASE_CONFIG!)
 const projectId = adminConfig.projectId
-const region =
-  functions.config().env && functions.config().env.region
-    ? functions.config().env.region
-    : 'asia-northeast1'
+const defaultRegion: typeof SUPPORTED_REGIONS[number] = 'asia-northeast1' as typeof SUPPORTED_REGIONS[number]
+
+let region: typeof SUPPORTED_REGIONS[number]
+const supportedRegionsArray: string[] = SUPPORTED_REGIONS.map(regionMap => regionMap)
+
+if (process.env.ENV_REGION && supportedRegionsArray.includes(process.env.ENV_REGION)) {
+  region = process.env.ENV_REGION as typeof SUPPORTED_REGIONS[number]
+} else {
+  region = defaultRegion
+}
+
+const envMode = process.env.ENV_MODE || 'production'
+const freeeClientId = process.env.FREEE_CLIENT_ID || ''
+const freeeClientSecret = process.env.FREEE_CLIENT_SECRET || ''
 
 export enum ConfigKeys {
   apiHost = 'apiHost',
@@ -26,7 +40,7 @@ export enum ConfigKeys {
 interface FirebaseFunctionsConfigs {
   env: {
     mode: 'production' | string
-    region: typeof SUPPORTED_REGIONS
+    region: typeof SUPPORTED_REGIONS | string
   }
   freee: {
     client_id: string
@@ -115,7 +129,20 @@ export class ConfigManager {
   }
 
   static getFunctionsConfigs(): FirebaseFunctionsConfigs {
-    return functions.config() as FirebaseFunctionsConfigs
+    if (!freeeClientId || !freeeClientSecret) {
+      loggerError('Freee client id or client secret was not get successfully, please check the secret keys')
+    }
+    const config: FirebaseFunctionsConfigs = {
+      env: {
+        mode: envMode,
+        region: region
+      },
+      freee: {
+        client_id: freeeClientId || '',
+        client_secret: freeeClientSecret || ''
+      }
+    }
+    return config
   }
 
   private static getDefaultValue(key: ConfigKeys) {
